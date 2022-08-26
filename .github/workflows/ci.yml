@@ -28,4 +28,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Run script
-        run: bash testscript.sh
+        run: bash testscript.sh $GITHUB_ACTOR
