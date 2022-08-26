@@ -2,7 +2,6 @@
 name: CI
 
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main", "develop", "release" ]
   pull_request:
@@ -10,7 +9,6 @@ on:
 
   workflow_dispatch:
 jobs:
-  # This workflow contains a single job called "build"
   test-script:
     runs-on: ubuntu-latest
     steps:
@@ -23,7 +21,7 @@ jobs:
 
   Run-script:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     needs: test-script
     steps:
       - uses: actions/checkout@v3
